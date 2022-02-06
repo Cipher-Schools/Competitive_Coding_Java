@@ -4,7 +4,9 @@ package linkedlist;
 public class Node {
 
     int data;
-    Node next;
+    public Node left;
+    public Node right;
+   public Node next;
     Node prev;
 Node random;
 

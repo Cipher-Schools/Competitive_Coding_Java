@@ -13,7 +13,7 @@ import java.util.Set;
 public class Twitter {
 
     static int timestamp = 0;
-    public Map<Integer, User> userMap;
+    public  Map<Integer, User> userMap;
 
     class TweetNode {
         public int tweetId;
@@ -37,6 +37,7 @@ public class Twitter {
         public User(int userId) {
             this.userId = userId;
             this.followed = new HashSet<>();
+            followed.add(userId);
             this.tweetHead = null;
         }
 

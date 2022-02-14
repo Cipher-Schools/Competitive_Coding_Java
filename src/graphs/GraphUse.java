@@ -8,7 +8,7 @@ public class GraphUse {
 
     public static void main(String[] args) {
 
-        Graph graph = new Graph(7);
+   /*     Graph graph = new Graph(7);
         graph.addEdgeInUndirected(0, 1);
         graph.addEdgeInUndirected(1, 2);
         graph.addEdgeInUndirected(2, 3);
@@ -21,8 +21,14 @@ public class GraphUse {
 
         List<Integer> neighbours =
                 graph.getNeighbours(6);
+*/
 
-      graph.bfs();
+        Graph directedGraph = new Graph(3);
+        directedGraph.addEdgeInDirected(0, 1);
+        directedGraph.addEdgeInDirected(1, 2);
+
+        System.out.println(directedGraph.isCyclic());
+
 
     }
 }

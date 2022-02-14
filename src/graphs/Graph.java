@@ -5,16 +5,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
-/**
- * @author amgarg
- */
-
-class Edge {
-    int source;
-    int destination;
-    int weight;
-}
-
 public class Graph {
 
     int v;
@@ -84,6 +74,42 @@ public class Graph {
         }
     }
 
+
+    public boolean isCyclic() {
+        boolean[] visited = new boolean[v];
+        boolean[] processed = new boolean[v];
+
+        for (int i = 0; i < v; i++) {
+
+            if (!visited[i]) {
+                if(isCyclicHelper(i, visited, processed)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+
+    }
+
+    private boolean isCyclicHelper(int currentVertex, boolean[] visited, boolean[] processed) {
+        visited[currentVertex] = true;
+
+        List<Integer> neighbours = getNeighbours(currentVertex);
+
+        for (Integer vertex : neighbours) {
+            if (!visited[vertex]) {
+                if(isCyclicHelper(vertex, visited, processed)) {
+                    return true;
+                }
+            } else if (!processed[vertex]) {
+                return true;
+            }
+        }
+        processed[currentVertex] = true;
+        return false;
+
+    }
+
     private void bfsHelper(int currentVertex, boolean[] marked) {
         Queue<Integer> queue = new LinkedList<>();
 
@@ -97,6 +123,7 @@ public class Graph {
             List<Integer> neighbours = getNeighbours(vertex);
             for (Integer neighbourVertex : neighbours) {
                 if (!marked[neighbourVertex]) {
+                    System.out.println(neighbourVertex + " ");
                     marked[neighbourVertex] = true;
                     queue.add(neighbourVertex);
                 }
